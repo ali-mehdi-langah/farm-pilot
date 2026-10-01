@@ -6,7 +6,7 @@ import Stats from "@/components/Stats";
 
 export default function Home() {
   return (
-    <div className="bg-accent">
+    <div className="bg-accent overflow-x-hidden">
       <Navbar />
       <Landingpage image={"./main.jpg"} />
       <Stats />

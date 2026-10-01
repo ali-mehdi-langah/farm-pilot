@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { createClient } from "@/utils/supabase/client";
 
 
 /**
@@ -80,6 +81,25 @@ export default function Navbar({
     setOpen(false);
   };
 
+
+    const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    const supabase = createClient();
+  
+    async function getUser() {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+  
+      setUser(user);
+      setLoading(false);
+    }
+  
+    getUser();
+  }, []);
+
   return (
     <header className="w-full bg-[#f1f2f4] font-[Manrope,ui-sans-serif,system-ui,sans-serif]">
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');`}</style>
@@ -122,7 +142,18 @@ export default function Navbar({
 
         {/* Actions (desktop) */}
         <div className="hidden items-center gap-5 md:flex">
-          <Link
+          {user ? (
+            <>
+            <Link
+            href={"/dashboard"}
+            className="rounded-full border border-[#14181a]/70 px-6 py-2.5 text-[13px] font-medium text-[#14181a] transition-colors hover:bg-[#14181a] hover:text-white"
+          >
+            Dashboard
+          </Link>
+            </>
+          ):(
+            <>
+            <Link
             href={signInHref}
             className="text-[13px] font-medium text-[#14181a] hover:opacity-70"
           >
@@ -134,6 +165,8 @@ export default function Navbar({
           >
             Sign up Free
           </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile toggle */}
