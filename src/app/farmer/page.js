@@ -1,6 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import { getCurrentUser } from "@/lib/auth";
 import { LogoutButton } from "@/components/LogoutButton";
+import FarmerDashboard from "@/components/FarmerDashboard";
 
 export default async function FarmerHome() {
   const user = await getCurrentUser();
@@ -14,10 +15,7 @@ export default async function FarmerHome() {
 
   return (
     <div className="p-10 space-y-3">
-      <h1 className="text-2xl font-semibold">Farmer dashboard</h1>
-      <p>Welcome, {farmer?.name}</p>
-      <p>Registration: {farmer?.registration_status}</p>
-      <LogoutButton />
+      <FarmerDashboard/>
     </div>
   );
 }

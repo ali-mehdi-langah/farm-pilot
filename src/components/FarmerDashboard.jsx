@@ -53,16 +53,7 @@ export function FarmerDashboard({
 
   return (
     <div className="relative min-h-[calc(100vh-6.5rem)] -m-4 md:-m-6 p-4 sm:p-6 md:p-8 rounded-xl overflow-hidden flex flex-col justify-between">
-      {/* ------------------------------------------------------------- */}
-      {/* FULL VIBRANCY BACKGROUND IMAGE - NOT FADED OUT                */}
-      {/* ------------------------------------------------------------- */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
-        style={{
-          backgroundImage: `url('/dashboard-bg.jpg')`,
-        }}
-        aria-hidden="true"
-      />
+      
       {/* Balanced contrast tint so white cards and header pop clearly */}
       <div
         className="absolute inset-0 bg-black/40 pointer-events-none"
